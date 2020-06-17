@@ -32,8 +32,8 @@ def xml_to_csv(path):
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall('object'):
-        classes_names.append(member.find('name').text)
-        value = (root.find('filename').text,
+            classes_names.append(member.find('name').text)
+            value = (root.find('filename').text,
                int(root.find('size')[0].text),
                int(root.find('size')[1].text),
                member.find('name').text,
@@ -41,12 +41,12 @@ def xml_to_csv(path):
                int(member.find('bndbox')[1].text),
                int(member.find('bndbox')[2].text),
                int(member.find('bndbox')[3].text))
-        xml_list.append(value)
-  column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
-  xml_df = pd.DataFrame(xml_list, columns=column_name) 
-  classes_names = list(set(classes_names))
-  classes_names.sort()
-  return xml_df, classes_names
+            xml_list.append(value)
+    column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
+    xml_df = pd.DataFrame(xml_list, columns=column_name) 
+    classes_names = list(set(classes_names))
+    classes_names.sort()
+    return xml_df, classes_names
 
 
 def main():
